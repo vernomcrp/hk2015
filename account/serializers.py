@@ -8,10 +8,11 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = ('user', 'group', 'is_admin')
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'password')
+        fields = ('url', 'username', 'email')
+        extra_kwargs = {'password': {'write_only': True}}
 
 class GroupAccountSerializer(serializers.ModelSerializer):
     class Meta:
