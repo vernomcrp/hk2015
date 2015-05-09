@@ -8,6 +8,7 @@ from dish import views as dish_views
 from account import account_login, group_manager
 
 router = routers.DefaultRouter()
+# router = routers.SimpleRouter()
 router.register('accounts', account_views.AccountViewSet)
 router.register('users', account_views.UserViewSet)
 router.register('orders', order_views.OrderViewSet)
@@ -17,7 +18,7 @@ router.register('ingredients', dish_views.IngredientViewSet)
 router.register('basedishs', dish_views.BaseDishViewSet)
 router.register('meats', dish_views.MeatViewSet)
 router.register('group_accounts', account_views.GroupAccountViewSet)
-
+# router.register('login-with-password', account_login.login_for_ken, base_name='login-with-password')
 urlpatterns = [
     # Examples:
     # url(r'^$', 'hack2015.views.home', name='home'),
@@ -30,3 +31,5 @@ urlpatterns = [
     url(r'^login-with-password/', account_login.login_for_ken),
     url(r'^register-new-account/', group_manager.register_new_account)
 ]
+
+urlpatterns += router.urls
