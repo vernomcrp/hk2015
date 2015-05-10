@@ -5,7 +5,7 @@ from rest_framework import routers
 from account import views as account_views
 from order import views as order_views
 from dish import views as dish_views
-from account import account_login, group_manager
+from account import account_login, group_manager, deduct
 
 router = routers.DefaultRouter()
 # router = routers.SimpleRouter()
@@ -29,7 +29,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login-with-password/', account_login.login_for_ken),
-    url(r'^register-new-account/', group_manager.register_new_account)
+    url(r'^register-new-account/', group_manager.register_new_account),
+    url(r'^deduct/', deduct.do_deduct)
 ]
 
 urlpatterns += router.urls
